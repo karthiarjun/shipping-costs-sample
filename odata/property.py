@@ -195,6 +195,7 @@ class PropertyBase(object):
         return u'endswith({0}, {1})'.format(self.name, value)
 
 
+
 class IntegerProperty(PropertyBase):
     """
     Property that stores a plain old integer

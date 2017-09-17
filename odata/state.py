@@ -10,6 +10,7 @@ from .property import PropertyBase, NavigationProperty
 
 class EntityState(object):
 
+
     def __init__(self, entity):
         """:type entity: EntityBase """
         self.entity = entity
