@@ -12,14 +12,7 @@ from odata import ODataService
 
 # Flask app should start in global layout
 app = Flask(__name__)
-url = 'http://services.odata.org/V4/Northwind/Northwind.svc/'
-Service = ODataService(url, reflect_entities=True)
-Order = Service.entities['Order']
-query = Service.query(Order)
-query = query.limit(1)
-query = query.order_by(Order.ShippedDate.desc())
-for order in query:
-    speech = "Date:: " + order.ShippedDate + " OKKKKKKA."
+
 
 
 
@@ -51,9 +44,11 @@ def makeWebhookResult(req):
     #speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
 	#rprint("Response:")
 	
-    
+    r = requests.get('https://api.github.com/events')
+    speech = r.text
     print("Response:")
     #speech = order.ShippedDate
+    
     print(speech)
 
     return {
