@@ -30,10 +30,9 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-    payload={}
-    r = requests.get('http://services.odata.org/Northwind/Northwind.svc/Customers?$filter=substringof%28%27Alfreds%27,%20CompanyName%29%20eq%20true')
-    d = r.json()
-    speech = d.value[0].text
+    payload={'value' : ['Address']}
+    r = requests.get('http://services.odata.org/Northwind/Northwind.svc/Customers?$filter=substringof%28%27Alfreds%27,%20CompanyName%29%20eq%20true',params=payload)
+    speech = r.text
     print("Response:")
     print(speech)
     return {
