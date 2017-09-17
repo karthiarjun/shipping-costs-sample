@@ -7,10 +7,18 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+from odata import ODataService
 #from pyrfc import Connection
 
 # Flask app should start in global layout
 app = Flask(__name__)
+url = 'http://services.odata.org/V4/Northwind/Northwind.svc/'
+Service = ODataService(url, reflect_entities=True)
+Order = Service.entities['Order']
+query = Service.query(Order)
+query = query.filter(Order.OrderID.startswith('10'))
+query = query.order_by(Order.ShippedDate.desc())
+
 
 
 @app.route('/webhook', methods=['POST'])
@@ -37,23 +45,21 @@ def makeWebhookResult(req):
 	#conn = Connection(ashost='10.0.0.1', sysnr='00', client='100', user='me', passwd='secret')
 	#conn = Connection(ashost='',sysnr='',client='',user='',passwd='')
 	#result = conn.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
-	
-	
-	
-
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
-
-    print("Response:")
+    #speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
+	print("Response:")
+	for order in query:
+	speech = order.ShippedDate
     print(speech)
+    #print("Response:")
+    #print(speech)
 
     return {
         "speech": speech,
         "displayText": speech,
         #"data": {},
         # "contextOut": [],
-        "source": "apiai-onlinestore-shipping"
+        "source": "connect-sap-shipping-list"
     }
 
 
