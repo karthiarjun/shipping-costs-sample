@@ -7,6 +7,7 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+from pyrfc import Connection
 
 # Flask app should start in global layout
 app = Flask(__name__)
@@ -33,6 +34,9 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
+	conn = Connection(ashost='10.0.0.1', sysnr='00', client='100', user='me', passwd='secret')
+	
+	
 
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
 
