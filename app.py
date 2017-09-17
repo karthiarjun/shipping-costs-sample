@@ -33,8 +33,9 @@ def makeWebhookResult(req):
     payload={}
     r = requests.get('http://services.odata.org/Northwind/Northwind.svc/Customers?$format=json&$filter=substringof%28%27Alfreds%27,%20CompanyName%29%20eq%20true')
     speech = r.value[0].CustomerID
+    speech = speech.text
     print("Response:")
-    print(speech.text)
+    print(speech)
     return {
         "speech": speech,
         "displayText": speech,
