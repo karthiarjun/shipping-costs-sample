@@ -47,7 +47,7 @@ def makeWebhookResult(req):
 	#result = conn.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
     #speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
-	#print("Response:")
+	#rprint("Response:")
 	
     
     print("Response:")
