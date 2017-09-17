@@ -5,50 +5,33 @@ import json
 import os
 import requests
 
+
 from flask import Flask
 from flask import request
 from flask import make_response
-#from odata import ODataService
-#from pyrfc import Connection
-
 # Flask app should start in global layout
 app = Flask(__name__)
-
-
-
-
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-
     print("Request:")
     print(json.dumps(req, indent=4))
-
     res = makeWebhookResult(req)
-
     res = json.dumps(res, indent=4)
     print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
-
 def makeWebhookResult(req):
     if req.get("result").get("action") != "shipping.cost":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
-	#conn = Connection(ashost='10.0.0.1', sysnr='00', client='100', user='me', passwd='secret')
-	#conn = Connection(ashost='',sysnr='',client='',user='',passwd='')
-	#result = conn.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-    #speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
-	#rprint("Response:")
-	
     r = requests.get('https://api.github.com/events')
     speech = r.text
     print("Response:")
-    #speech = order.ShippedDate
     
     print(speech)
 
