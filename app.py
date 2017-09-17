@@ -52,7 +52,8 @@ def makeWebhookResult(req):
     
     print("Response:")
     for order in query:
-    speech = order.ShippedDate
+    speech = "The cost of shipping to " + zone + " is " + order.ShippedDate + " euros."
+    #speech = order.ShippedDate
     print(speech)
 
     return {
