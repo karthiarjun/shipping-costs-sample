@@ -1,2 +1,0 @@
-.. automodule:: odata.exceptions
-    :members:

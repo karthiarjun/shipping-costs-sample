@@ -53,7 +53,7 @@ Types
 from decimal import Decimal
 import datetime
 
-import dateutil.parser
+#import dateutil.parser
 
 from .navproperty import NavigationProperty
 
@@ -288,7 +288,8 @@ class DatetimeProperty(PropertyBase):
 
     def deserialize(self, value):
         if value:
-            return dateutil.parser.parse(value)
+            #return dateutil.parser.parse(value)
+            return value
 
 
 class UUIDProperty(StringProperty):
