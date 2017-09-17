@@ -16,10 +16,7 @@ url = 'http://services.odata.org/V4/Northwind/Northwind.svc/'
 Service = ODataService(url, reflect_entities=True)
 Order = Service.entities['Order']
 query = Service.query(Order)
-query = query.limit(2)
-query = query.order_by(Order.ShippedDate.desc())
-for order in query:
-    speech = "Date:: " + order.ShippedDate + " OKKKKKKA."
+
 
 
 @app.route('/webhook', methods=['POST'])
@@ -52,7 +49,10 @@ def makeWebhookResult(req):
 	
     
     print("Response:")
-    #speech = order.ShippedDate
+    query = query.limit(2)
+    query = query.order_by(Order.ShippedDate.desc())
+    for order in query:
+    speech = "Date:: " + order.ShippedDate + " OKKKKKKA."
     print(speech)
 
     return {
