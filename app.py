@@ -22,7 +22,6 @@ for order in query:
     speech = "Date:: " + order.ShippedDate + " OKKKKKKA."
 
 
-
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
