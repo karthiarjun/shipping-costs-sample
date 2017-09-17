@@ -51,8 +51,8 @@ def makeWebhookResult(req):
 	
     
     print("Response:")
-	for order in query:
-	speech = order.ShippedDate
+    for order in query:
+    speech = order.ShippedDate
     print(speech)
 
     return {
