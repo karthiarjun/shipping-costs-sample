@@ -9,7 +9,7 @@ from flask import request
 from flask import make_response
 from odata import ODataService
 for order in query:
-speech = "The cost of shipping to " + zone + " is " + order.ShippedDate + " euros."
+    speech = "The cost of shipping to " + zone + " is " + order.ShippedDate + " euros."
 #from pyrfc import Connection
 
 # Flask app should start in global layout
