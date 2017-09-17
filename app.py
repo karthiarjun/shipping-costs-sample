@@ -35,18 +35,18 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
 	#conn = Connection(ashost='10.0.0.1', sysnr='00', client='100', user='me', passwd='secret')
-	conn = Connection(ashost='',sysnr='',client='',user='',passwd='')
-	result = conn.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
+	#conn = Connection(ashost='',sysnr='',client='',user='',passwd='')
+	#result = conn.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
 	
 	
 	
 
-    #cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
 
-    #speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
+    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
 
     print("Response:")
-    print(result)
+    print(speech)
 
     return {
         "speech": speech,
