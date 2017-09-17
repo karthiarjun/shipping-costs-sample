@@ -6,6 +6,7 @@ import os
 import requests
 
 
+
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -29,12 +30,11 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
     cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-    r = requests.get('https://api.github.com/events')
-    speech = r.text
+    payload={}
+    r = requests.get('http://services.odata.org/Northwind/Northwind.svc/Customers?$format=json&$filter=substringof%28%27Alfreds%27,%20CompanyName%29%20eq%20true')
+    speech = r.value[0]
     print("Response:")
-    
-    print(speech)
-
+    print(speech.CompanyName)
     return {
         "speech": speech,
         "displayText": speech,
