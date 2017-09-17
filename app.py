@@ -16,7 +16,7 @@ url = 'http://services.odata.org/V4/Northwind/Northwind.svc/'
 Service = ODataService(url, reflect_entities=True)
 Order = Service.entities['Order']
 query = Service.query(Order)
-query = query.filter(Order.OrderID.startswith('10'))
+query = query.limit(2)
 query = query.order_by(Order.ShippedDate.desc())
 
 
