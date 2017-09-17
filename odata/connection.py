@@ -4,8 +4,8 @@ import json
 import functools
 import logging
 
-import requests
-from requests.exceptions import RequestException
+#import requests
+from .exceptions import RequestException
 
 from odata import version
 from .exceptions import ODataError, ODataConnectionError
