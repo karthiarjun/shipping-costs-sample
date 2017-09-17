@@ -34,7 +34,8 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
-	conn = Connection(ashost='10.0.0.1', sysnr='00', client='100', user='me', passwd='secret')					
+	#conn = Connection(ashost='10.0.0.1', sysnr='00', client='100', user='me', passwd='secret')
+	conn = Connection(ashost='',sysnr='',client='',user='',passwd='')
 	result = conn.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
 	
 	
