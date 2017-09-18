@@ -4,10 +4,8 @@ import urllib
 import json
 import os
 import requests
-from odata import ODataService
-url = 'http://services.odata.org/V4/Northwind/Northwind.svc/'
-Service = ODataService(url, reflect_entities=True)
-Order = Service.entities['Order']
+
+
 
 from flask import Flask
 from flask import request
@@ -31,8 +29,9 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
-    #cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-    r = requests.get('http://services.odata.org/Northwind/Northwind.svc/Customers?$format=json&$filter=substringof%28%27Alfreds%27,%20CompanyName%29%20eq%20true')
+    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+    payload={'value' : ['Address']}
+    r = requests.get('http://services.odata.org/Northwind/Northwind.svc/Customers?$format=json&$filter=substringof%28%27Alfreds%27,%20CompanyName%29%20eq%20true',params=payload)
     speech = r.text
     print("Response:")
     print(speech)
